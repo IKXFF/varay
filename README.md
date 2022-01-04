@@ -1,24 +1,49 @@
-# XRayR
-A Xray backend framework that can easily support many panels.
+# VAray
+A VAray backend framework that can easily support many panels.
 
-一个基于Xray的后端框架，支持V2ay,Trojan,Shadowsocks协议，极易扩展，支持多面板对接
+一个基于VAray的后端框架，支持V2ay,Trojan,Shadowsocks协议，极易扩展，支持多面板对接
 
-Find the source code here: [XrayR-project/XrayR](https://github.com/XrayR-project/XrayR)
 
 # 详细使用教程
 
-[教程](https://crackair.gitbook.io/xrayr-project/)
+安装 Docker
+Centos
+yum install -y yum-utils
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce docker-ce-cli containerd.io -y
+systemctl start docker
+systemctl enable docker
 
-# 一键安装
 
-```
-bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
-```
-# Docker 安装
+Debian / Ubuntu
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+systemctl start docker
+systemctl enable docker
+安装Docker-compose
+curl -fsSL https://get.docker.com | bash -s docker
+curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+Docker-compose 安装XrayR (推荐)
+git clone https://github.com/XrayR-project/XrayR-release
+cd XrayR-release
+编辑配置文件：config.yml，详见：配置文件说明
+启动docker：docker-compose up -d
 
-```
-docker pull crackair/xrayr:latest && docker run --restart=always --name xrayr -d -v ${PATH_TO_CONFIG}/config.yml:/etc/XrayR/config.yml --network=host crackair/xrayr:latest
-```
+
 
 # Docker compose 安装
 0. 安装docker-compose: 
